@@ -1,0 +1,90 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to left, rgb(124, 44, 1), #BB360C);
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 102, 255);
+}
+
+button a {
+    color: black;
+}
+
+#login {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo {
+    width: 300px;
+    margin-bottom: -30px;
+}
+
+
+.usuario input {
+    border-radius: 15px;
+    border: none;
+    width: 250px;
+    height: 40px;
+    padding-left: 15px;
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+
+.senha input {
+    border-radius: 15px;
+    border: none;
+    width: 250px;
+    height: 40px;
+    padding-left: 15px;
+    background-color: #ffffff;
+    margin-top: 15px;
+    color: black;
+    border: 1px solid black;
+}
+
+.senha input::placeholder, .usuario input::placeholder {
+    color: black;
+}
+
+.entrar input {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    border: 1px solid black;
+}
+
+
+input::placeholder {
+    color: #b6b6b6;
+}
+
+h1 {
+    color: #000000;
+}
+
+.caixa {
+    margin-top: 15%;
+    border: 1px solid red;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.caixa img {
+    width: 115px;
+}
+
+input:focus {
+    outline: none;
+}

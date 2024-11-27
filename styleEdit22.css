@@ -1,0 +1,43 @@
+#body {
+    background-color: #ffffff;
+}
+
+#modal-add-produto {
+    background-color: #d87e00;
+    display: block;
+    width: 500px;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    padding: 20px;
+    color: rgb(0, 0, 0);
+}
+
+input {
+    width: 300px;
+    height: 20px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#update {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#btn-fechar2 {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form-control-file {
+    height: 40px;
+}
