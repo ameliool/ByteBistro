@@ -124,7 +124,7 @@ foreach ($pedidos as $pedido) {
     <div class="modal" id="successModal">
         <div class="modal-content">
             <span class="close-btn" id="closeBtn">&times;</span>
-            <img src="imagens/certo2.png" alt="" width="300px" id="img-certo">
+            <img src="imagens/certo.jpg" alt="" width="300px" id="img-certo">
             <h3>Pedido realizado com sucesso!</h3>
         </div>
     </div>
