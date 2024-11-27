@@ -18,6 +18,7 @@ if(!empty($_GET['id'])) {
         }
     } else {
         header('Location: admin.php'); // Redirecionar se não encontrar o produto
+        exit;
     }
 }
 ?>

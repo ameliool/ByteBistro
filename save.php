@@ -25,6 +25,8 @@ if(isset($_FILES['foto'])){
   if($deucerto){
       $result = mysqli_query($mysqli, "UPDATE itens SET nome='$nome', valor='$valor', descricao='$descricao', categoria='$categoria', foto='$path' WHERE id='$id' ");
       header('Location: admin.php');
+    exit;
+
     }
   else {
   echo "falha ao enviar arquivo";

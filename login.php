@@ -25,6 +25,7 @@
     if ($_POST['usuario'] == 'admin' && $_POST['senha'] == 'admin123') {
       $_SESSION['usuario'] = $_POST['usuario'];
       header('Location: admin.php');
+      exit;
     }
   }
 
