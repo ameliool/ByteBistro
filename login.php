@@ -17,7 +17,9 @@
 
   <?php
 
-  session_start();
+  if(!empty($_SESSION)){
+    session_start();
+  }
 
   if (isset($_POST['usuario'], $_POST['senha'])){
     if ($_POST['usuario'] == 'admin' && $_POST['senha'] == 'admin123') {
