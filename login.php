@@ -1,3 +1,19 @@
+<?php
+
+  if(!empty($_SESSION)){
+    session_start();
+  }
+
+  if (isset($_POST['usuario'], $_POST['senha'])){
+    if ($_POST['usuario'] == 'admin' && $_POST['senha'] == 'admin123') {
+      $_SESSION['usuario'] = $_POST['usuario'];
+      header('Location: admin.php');
+      exit;
+    }
+  }
+
+  ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -15,21 +31,6 @@
     <title>Login</title>
   </head>
 
-  <?php
-
-  if(!empty($_SESSION)){
-    session_start();
-  }
-
-  if (isset($_POST['usuario'], $_POST['senha'])){
-    if ($_POST['usuario'] == 'admin' && $_POST['senha'] == 'admin123') {
-      $_SESSION['usuario'] = $_POST['usuario'];
-      header('Location: admin.php');
-      exit;
-    }
-  }
-
-  ?>
 
   <body id="principal">
 
