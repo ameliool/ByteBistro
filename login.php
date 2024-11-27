@@ -1,13 +1,13 @@
 <?php
 
-  if(!empty($_SESSION)){
+  if(empty($_SESSION)){
     session_start();
   }
 
   if (isset($_POST['usuario'], $_POST['senha'])){
     if ($_POST['usuario'] == 'admin' && $_POST['senha'] == 'admin123') {
       $_SESSION['usuario'] = $_POST['usuario'];
-      header('Location: admin.php');
+      header('Location: /admin.php');
       exit;
     }
   }
