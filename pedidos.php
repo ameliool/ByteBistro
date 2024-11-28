@@ -70,7 +70,11 @@ $conn->close();
 ?>
 
 
-
+<script>
+    setInterval(() =>{
+        window.location.reload()
+    }, 5000)
+</script>
 
 </body>
 </html>

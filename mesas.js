@@ -6,3 +6,7 @@ button.onclick = function (){
     modal.showModal()
 }
 
+setInterval(() =>{
+    window.location.reload()
+}, 5000)
+
