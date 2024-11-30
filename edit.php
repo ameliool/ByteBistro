@@ -13,6 +13,7 @@ if(!empty($_GET['id'])) {
         while($user_data = mysqli_fetch_assoc($result)){
             $nome = $user_data['nome'];
             $valor = $user_data['valor'];
+            $foto = $user_data['foto'];
             $descricao = $user_data['descricao'];
             $id_categoria = $user_data['categoria'];  // Categoria do produto
         }
@@ -76,7 +77,7 @@ if(!empty($_GET['id'])) {
 
             <div class="form-group">
                 <label for="foto"><b>Foto: </b></label>
-                <input type="file" class="form-control-file" id="foto" name="foto">
+                <input value="<?php echo getcwd()."/". $foto?>" type="file" class="form-control-file" id="foto" name="foto">
             </div>
 
             <input type="hidden" name="id" value="<?php echo $id ?>">
