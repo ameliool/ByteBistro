@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Incluir a conexão com o banco de dados
 include('conexao.php');
 
@@ -68,8 +69,12 @@ if (isset($_POST['finalizar_pedido'])) {
     }
 }
 
+$id = $_SESSION['id_comanda'];
+
+print_r($id);
+
 // Buscar os pedidos do banco de dados
-$sql = "SELECT * FROM pedidos ORDER BY data_pedido DESC";
+$sql = "SELECT * FROM pedidos WHERE id_comanda='$id' ORDER BY data_pedido DESC";
 $result = $conn->query($sql);
 $pedidos = $result->fetch_all(MYSQLI_ASSOC);
 
