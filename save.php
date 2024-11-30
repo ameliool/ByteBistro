@@ -13,7 +13,7 @@ if(isset($_FILES['foto'])){
   if($foto['error'])
   die('erro ao enviar arquivo');
 
-  $pasta = "/arquivos/";
+  $pasta = getcwd().DIRECTORY_SEPARATOR."arquivos/";
   $nomearq = $foto['name'];
   $novonome = uniqid();
   $extensao = strtolower(pathinfo($nomearq, PATHINFO_EXTENSION));
