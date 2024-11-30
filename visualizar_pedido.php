@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Incluir a conexão com o banco de dados
 include('conexao.php');
 
@@ -16,62 +18,62 @@ if (isset($_GET['remover'])) {
 if (isset($_POST['finalizar_pedido'])) {
     // Transação para mover os itens para pedidos_finalizados
     try {
-        $conn->begin_transaction(); // Inicia a transação
+        $pdo->beginTransaction();
 
         // Buscar os produtos do carrinho
         $sql = "SELECT * FROM pedidos";
-        $result = $conn->query($sql);
-        $pedidos = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $pdo->query($sql);
+        $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Mover os produtos para pedidos_finalizados
         foreach ($pedidos as $pedido) {
-            $sql = "INSERT INTO pedidos_finalizados (nome_produto, quantidade, preco, valor_total, id_comanda, numero_mesa) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('siidii', 
-                $pedido['nome_produto'], 
-                $pedido['quantidade'], 
-                $pedido['preco'], 
-                $pedido['valor_total'], 
-                $pedido['id_comanda'], 
-                $pedido['numero_mesa']
-            );
+            $sql = "INSERT INTO pedidos_finalizados (nome_produto, quantidade, preco, valor_total, id_comanda,numero_mesa) 
+                    VALUES (:nome_produto, :quantidade, :preco, :valor_total, :id_comanda, :numero_mesa)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nome_produto', $pedido['nome_produto']);
+            $stmt->bindParam(':quantidade', $pedido['quantidade']);
+            $stmt->bindParam(':preco', $pedido['preco']);
+            $stmt->bindParam(':valor_total', $pedido['valor_total']);
+            $stmt->bindParam(':id_comanda', $pedido['id_comanda']);
+            $stmt->bindParam(':numero_mesa', $pedido['numero_mesa']);
             $stmt->execute();
         }
 
         foreach ($pedidos as $pedido) {
-            $sql = "INSERT INTO todos_pedidos (nome_produto, quantidade, preco, valor_total, id_comanda, numero_mesa) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('siidii', 
-                $pedido['nome_produto'], 
-                $pedido['quantidade'], 
-                $pedido['preco'], 
-                $pedido['valor_total'], 
-                $pedido['id_comanda'], 
-                $pedido['numero_mesa']
-            );
+            $sql = "INSERT INTO todos_pedidos (nome_produto, quantidade, preco, valor_total, id_comanda,numero_mesa) 
+                    VALUES (:nome_produto, :quantidade, :preco, :valor_total, :id_comanda, :numero_mesa)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':nome_produto', $pedido['nome_produto']);
+            $stmt->bindParam(':quantidade', $pedido['quantidade']);
+            $stmt->bindParam(':preco', $pedido['preco']);
+            $stmt->bindParam(':valor_total', $pedido['valor_total']);
+            $stmt->bindParam(':id_comanda', $pedido['id_comanda']);
+            $stmt->bindParam(':numero_mesa', $pedido['numero_mesa']);
             $stmt->execute();
         }
 
         // Limpar o carrinho (remover todos os itens da tabela pedidos)
         $sql = "DELETE FROM pedidos";
-        $conn->query($sql);
+        $pdo->exec($sql);
 
-        $conn->commit(); // Confirma a transação
+        $pdo->commit();
         $pedido_realizado = true; // Indica que o pedido foi realizado
 
         //header('Location: index.php');
     } catch (Exception $e) {
-        $conn->rollback(); // Reverte a transação em caso de erro
+        $pdo->rollBack();
         echo "Erro ao finalizar o pedido: " . $e->getMessage();
     }
 }
 
-// Buscar os pedidos do banco de dados
-$sql = "SELECT * FROM pedidos ORDER BY data_pedido DESC";
-$result = $conn->query($sql);
-$pedidos = $result->fetch_all(MYSQLI_ASSOC);
+$id = $_SESSION['id_comanda'];
+
+print_r($id);
+
+$sql = "SELECT * FROM pedidos WHERE id_comanda='$id' ORDER BY data_pedido DESC";
+$stmt = $pdo->query($sql);
+$pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 // Calcular o valor total
 $total_compra = 0;
