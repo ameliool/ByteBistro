@@ -33,7 +33,7 @@ if(isset($_FILES['foto'])){
   }
 
 }
-/*
+
 if(isset($_POST['update'])){
     $id = $_POST['id'];
    
@@ -49,6 +49,7 @@ if(isset($_POST['update'])){
 }
 
   header('Location: admin.php');
+  exit;
 ?>
 
-*/
+
