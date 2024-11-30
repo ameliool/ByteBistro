@@ -20,10 +20,11 @@ if(isset($_FILES['foto'])){
   if($extensao != "jpg" && $extensao != "png")
       die("Tipo de arquivo não aceito");
   $path = $pasta . $novonome . "." . $extensao;
+  $dbPath = "arquivos/".$novonome.".".$extensao;
   
   $deucerto = move_uploaded_file($foto["tmp_name"], $path);
   if($deucerto){
-      $result = mysqli_query($mysqli, "UPDATE itens SET nome='$nome', valor='$valor', descricao='$descricao', categoria='$categoria', foto='$path' WHERE id='$id' ");
+      $result = mysqli_query($mysqli, "UPDATE itens SET nome='$nome', valor='$valor', descricao='$descricao', categoria='$categoria', foto='$dbPath' WHERE id='$id' ");
       header('Location: admin.php');
       exit;
     }
