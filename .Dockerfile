@@ -7,5 +7,5 @@ WORKDIR /var/www/html/
 COPY . .
 
 RUN chmod -R a+r /var/www/html/
-RUN chmod -R +775 /var/www/html/arquivos
+RUN chmod -R +777 /var/www/html/arquivos/
 EXPOSE 80
