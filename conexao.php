@@ -14,7 +14,7 @@ $usuario = "root";
 $senha = "tdziMesQcdvYEpyRffJAwjgsRFEWGLqT";
 
 
-$mysqli = new mysqli($host, $usuario, $senha, $banco, $port);
+$mysqli = new mysqli($host, $usuario, $senha, $banco); //$port);
 if($mysqli->connect_errno){
     echo"Falha ao conectar: (" . $mysqli->connect_errno . " ) " . $mysqli->connect_errno;
 }
