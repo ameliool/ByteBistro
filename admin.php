@@ -23,8 +23,8 @@
         if(unlink($foto['foto'])){
          $deu_certo =  $mysqli->query("DELETE FROM itens WHERE id='$id'") or die($mysqli->error);
          if($deu_certo){
-            echo "<p> arquivo excluido com sucesso!</p>";   
             header('Location: admin.php');
+            exit;
          }
         }
 
