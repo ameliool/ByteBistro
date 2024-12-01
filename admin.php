@@ -25,6 +25,7 @@
          if($deu_certo){
             echo "<p> arquivo excluido com sucesso!</p>";   
             header('Location: admin.php');
+            exit;
          }
         }
 
