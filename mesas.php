@@ -1,8 +1,15 @@
 <?php
 
 session_start();
-// Conexão com o banco de dados
+
 include_once('conexao.php');
+
+if(!isset($_SESSION['usuario'])){
+    header('Location: login.php?erro=true');
+    exit;
+}
+
+include ('verificarLogin.php');
 
 if(isset($_GET['deletar'])){
 

@@ -1,6 +1,14 @@
 <?php
-// Inclui o arquivo de conexão
+session_start();
+
 include 'conexao.php';
+
+if(!isset($_SESSION['usuario'])){
+    header('Location: login.php?erro=true');
+    exit;
+}
+
+include ('verificarLogin.php');
 
 // Excluir pedido quando o botão for clicado
 if (isset($_POST['excluir'])) {

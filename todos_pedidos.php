@@ -1,6 +1,14 @@
 <?php
-// Incluir a conexão com o banco de dados
+session_start();
+
 include('conexao.php');
+
+if(!isset($_SESSION['usuario'])){
+    header('Location: login.php?erro=true');
+    exit;
+}
+
+include ('verificarLogin.php');
 
 // Variáveis para os filtros
 $data_inicial = $_POST['data_inicial'] ?? '';
