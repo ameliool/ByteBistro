@@ -10,6 +10,8 @@ if(!isset($_SESSION['usuario'])){
 
 include ('verificarLogin.php');
 
+date_default_timezone_set('America/Sao_Paulo');
+
 // Variáveis para os filtros
 $data_inicial = $_POST['data_inicial'] ?? '';
 $data_final = $_POST['data_final'] ?? '';
@@ -23,6 +25,8 @@ if (!empty($data_inicial)) {
 if (!empty($data_final)) {
     $sql .= " AND data_pedido <= '$data_final'";
 }
+
+$sql .= " ORDER BY data_pedido DESC";
 
 // Executar a consulta
 $result = $mysqli->query($sql);
@@ -177,12 +181,17 @@ if ($result && $result->num_rows > 0) {
             <?php foreach ($pedidos_agrupados as $pedido): ?>
                 <div class="card">
                     <h2>Comanda: <?= htmlspecialchars($pedido['id_comanda']) ?> | Mesa: <?= htmlspecialchars($pedido['numero_mesa']) ?></h2>
-                    <p><strong>Data do Pedido:</strong> <?= htmlspecialchars($pedido['data_pedido']) ?></p>
+                    <p><strong>Data do Pedido:</strong> 
+                        <?php
+                            $data_pedido_formatada = date('d/m/Y H:i:s', strtotime($pedido['data_pedido']));
+                            echo htmlspecialchars($data_pedido_formatada);
+                        ?>
+                    </p>
                     <h3>Produtos:</h3>
-                        <?php foreach ($pedido['produtos'] as $produto): ?>
-                                <?= htmlspecialchars($produto['quantidade']) ?>x <?= htmlspecialchars($produto['nome_produto']) ?>
-                                - R$ <?= htmlspecialchars(number_format($produto['preco'], 2, ',', '.')) ?><br>
-                        <?php endforeach; ?><br>
+                    <?php foreach ($pedido['produtos'] as $produto): ?>
+                        <?= htmlspecialchars($produto['quantidade']) ?>x <?= htmlspecialchars($produto['nome_produto']) ?>
+                        - R$ <?= htmlspecialchars(number_format($produto['preco'], 2, ',', '.')) ?><br>
+                    <?php endforeach; ?><br>
                     <p class="total"><strong>Total do Pedido:</strong> R$ 
                         <?= htmlspecialchars(number_format(array_sum(array_column($pedido['produtos'], 'valor_total')), 2, ',', '.')) ?>
                     </p>
